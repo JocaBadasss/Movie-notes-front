@@ -27,6 +27,8 @@ export default function NewMovie() {
   const [rating, setRating] = useState("")
   const [description, setDescription] = useState()
 
+  const [isLoading, setIsLoading] = useState(false)
+
   //armazenará todas as tags
   const [tags, setTags] = useState([])
   //armazenará uma tag
@@ -64,6 +66,8 @@ export default function NewMovie() {
       return alert("You wrote a tag but did not add it")
     }
 
+    setIsLoading(true)
+
     const movieNote = {
       title,
       description,
@@ -81,6 +85,13 @@ export default function NewMovie() {
       } else {
         alert("Something went wrong")
       }
+    }
+  }
+
+  function handleDeleteMovie() {
+    confirm = window.confirm("Are you sure you want to delete it?")
+    if (confirm) {
+      navigate(-1)
     }
   }
 
@@ -140,10 +151,15 @@ export default function NewMovie() {
             </div>
           </Tags>
           <Buttons>
-            <Button title="Delete movie" />
             <Button
-              title="Save changes"
+              title="Delete movie"
+              onClick={handleDeleteMovie}
+            />
+            <Button
               onClick={handleNewMovie}
+              title={isLoading ? "Loading..." : "Save changes"}
+              loading={isLoading}
+              disabled={isLoading}
             />
           </Buttons>
         </Form>

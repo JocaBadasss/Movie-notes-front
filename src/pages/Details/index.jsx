@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useAuth } from "../../hooks/auth"
 
+import avatarPlaceholder from "../../assets/avatar_placeholder.svg"
+
 import { format } from "date-fns"
 
 import { Header } from "../../components/Header"

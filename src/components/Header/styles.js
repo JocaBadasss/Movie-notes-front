@@ -15,10 +15,14 @@ export const Container = styled.header`
 
   border-bottom: 1px solid #3e3b47;
 
-  > h1 {
-    color: ${({ theme }) => theme.COLORS.PINK};
-    font-weight: bold;
-    font-size: 2.4rem;
+  > button {
+    background: none;
+    border: none;
+    > h1 {
+      color: ${({ theme }) => theme.COLORS.PINK};
+      font-weight: bold;
+      font-size: 2.4rem;
+    }
   }
 
   .search {

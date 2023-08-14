@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../hooks/auth"
 
 import { api } from "../../services/api"
@@ -10,6 +11,7 @@ import { Container, Profile, Logout } from "./styles"
 
 export function Header({ onChange }) {
   const { signOut, user } = useAuth()
+  const navigate = useNavigate()
 
   const avatarURL = user.avatar
     ? `${api.defaults.baseURL}/files/${user.avatar}`
@@ -23,9 +25,15 @@ export function Header({ onChange }) {
     }
   }
 
+  function handleTitleClick() {
+    navigate("/")
+  }
+
   return (
     <Container>
-      <h1>RocketMovies</h1>
+      <button onClick={handleTitleClick}>
+        <h1>MovieNotes</h1>
+      </button>
 
       <Input
         className="search"

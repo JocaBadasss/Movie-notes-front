@@ -14,6 +14,7 @@ export default function SignUp() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
 
@@ -21,6 +22,8 @@ export default function SignUp() {
     if (!name || !email || !password) {
       return alert("You must fill all fields")
     }
+
+    setIsLoading(true)
 
     api
       .post("/users", {
@@ -45,7 +48,7 @@ export default function SignUp() {
     <Container>
       <Form>
         <Title>
-          <h1>RocketMovies</h1>
+          <h1>MovieNotes</h1>
           <p>Application to track everything you watch.</p>
         </Title>
 
@@ -71,8 +74,10 @@ export default function SignUp() {
           />
 
           <Button
-            title="Sign up"
+            title={isLoading ? "Loading..." : "Sign Up"}
             onClick={handleSignUp}
+            loading={isLoading}
+            disabled={isLoading}
           />
         </Inputs>
 

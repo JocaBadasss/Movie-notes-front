@@ -11,18 +11,23 @@ import { Container, Form, Background, Title, Inputs } from "./styles"
 export default function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   const { signIn } = useAuth()
 
   function handleSignIn() {
+    setIsLoading(true)
     signIn({ email, password })
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
   }
 
   return (
     <Container>
       <Form>
         <Title>
-          <h1>RocketMovies</h1>
+          <h1>MovieNotes</h1>
           <p>Application to track everything you watch.</p>
         </Title>
 
@@ -42,8 +47,10 @@ export default function SignIn() {
           />
 
           <Button
-            title="Log in"
             onClick={handleSignIn}
+            title={isLoading ? "Loading..." : "Log in"}
+            loading={isLoading}
+            disabled={isLoading}
           />
         </Inputs>
 
