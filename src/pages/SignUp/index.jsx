@@ -18,6 +18,12 @@ export default function SignUp() {
 
   const navigate = useNavigate()
 
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      handleSignUp()
+    }
+  }
+
   function handleSignUp() {
     if (!name || !email || !password) {
       return alert("You must fill all fields")
@@ -71,11 +77,12 @@ export default function SignUp() {
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => handleKeyPress(e)}
           />
 
           <Button
-            title={isLoading ? "Loading..." : "Sign Up"}
             onClick={handleSignUp}
+            title={isLoading ? "Loading..." : "Sign Up"}
             loading={isLoading}
             disabled={isLoading}
           />

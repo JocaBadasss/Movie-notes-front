@@ -10,6 +10,11 @@ export const Container = styled.div`
     "header"
     "title"
     "content";
+  > header {
+    input {
+      display: none;
+    }
+  }
 `
 export const Title = styled.div`
   display: flex;

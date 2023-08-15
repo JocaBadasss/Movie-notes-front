@@ -15,6 +15,12 @@ export default function SignIn() {
 
   const { signIn } = useAuth()
 
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      handleSignIn()
+    }
+  }
+
   function handleSignIn() {
     setIsLoading(true)
     signIn({ email, password })
@@ -44,6 +50,7 @@ export default function SignIn() {
             icon={FiLock}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => handleKeyPress(e)}
           />
 
           <Button

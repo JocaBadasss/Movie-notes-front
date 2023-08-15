@@ -10,6 +10,12 @@ export const Container = styled.div`
     "header"
     "title"
     "content";
+
+  > header {
+    input {
+      display: none;
+    }
+  }
 `
 export const Main = styled.main`
   margin: 2rem 10rem 6.3rem 12.3rem;
@@ -74,7 +80,7 @@ export const TextArea = styled.textarea`
   border: none;
 
   padding: 1.9rem;
-  color: ${({theme}) => theme.COLORS.WHITE_100};
+  color: ${({ theme }) => theme.COLORS.WHITE_100};
 
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
   border-radius: 1rem;

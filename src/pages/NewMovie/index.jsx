@@ -53,6 +53,9 @@ export default function NewMovie() {
 
   // consiste em ela pegar o valor da newTag e despejar no array com as outras tags,e limpar a const que armazena uma tag
   function handleAddNewTag() {
+    if (newTag === "") {
+      return alert("You can not add an empty tag")
+    }
     setTags((prevState) => [...prevState, newTag])
     setNewTag("")
   }
@@ -88,6 +91,13 @@ export default function NewMovie() {
     }
   }
 
+  function handleKeyPressOnTags(event) {
+    if (event.key === "Tab" || event.key === "Enter") {
+      event.preventDefault()
+      handleAddNewTag()
+    }
+  }
+
   function handleDeleteMovie() {
     confirm = window.confirm("Are you sure you want to delete it?")
     if (confirm) {
@@ -114,7 +124,7 @@ export default function NewMovie() {
               onChange={(e) => setTitle(e.target.value)}
             />
             <Input
-              placeholder="Your rating (0 to 5)"
+              placeholder="Your rating (1 to 5)"
               type="number"
               value={rating}
               min="1"
@@ -146,6 +156,7 @@ export default function NewMovie() {
                 placeholder="New tag"
                 value={newTag}
                 onChange={(e) => setNewTag(e.target.value)}
+                onKeyDown={(e) => handleKeyPressOnTags(e)}
                 onClick={handleAddNewTag}
               />
             </div>

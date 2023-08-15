@@ -15,6 +15,8 @@ import { Container, Header, Picture, Inputs } from "./styles"
 export default function Profile() {
   const { user, updateProfile } = useAuth()
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -53,6 +55,7 @@ export default function Profile() {
       old_password: password,
       password: newPassword,
     }
+    setIsLoading(true)
 
     updateProfile({ user, avatarFile })
   }
@@ -107,9 +110,10 @@ export default function Profile() {
           onChange={(e) => setNewPassword(e.target.value)}
         />
         <Button
-          title="Save"
-          loading="true"
           onClick={handleUpdate}
+          title={isLoading ? "Loading..." : "Save"}
+          loading={isLoading}
+          disabled={isLoading}
         />
       </Inputs>
     </Container>
